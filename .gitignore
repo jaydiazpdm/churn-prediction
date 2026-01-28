@@ -22,3 +22,6 @@ Q1_Churn_Model_Scope.docx
 model/model.py
 model/features.txt
 dataset.csv
+
+# Evaluation data (generated, contains sensitive client info)
+experiments/data/
