@@ -25,3 +25,6 @@ dataset.csv
 
 # Evaluation data (generated, contains sensitive client info)
 experiments/data/
+
+# Documentation (internal diagrams)
+docs/
