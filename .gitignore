@@ -23,8 +23,10 @@ model/model.py
 model/features.txt
 dataset.csv
 
-# Evaluation data (generated, contains sensitive client info)
+# Experiment outputs (generated, reproducible from configs)
 experiments/data/
+experiments/artifacts/
+experiments/logs/
 
 # Documentation (internal diagrams)
 docs/
