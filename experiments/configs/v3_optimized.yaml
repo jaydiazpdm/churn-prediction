@@ -1,0 +1,39 @@
+# V3 Optimized experiment
+# Tuned weights from grid search for maximum accuracy while maintaining recall
+
+name: "v3_optimized"
+description: "V3 optimized weights targeting 65%+ accuracy with 70%+ recall"
+
+# All engineered features enabled
+engineered_features:
+  - IS_FIRST_CONTRACT
+  - TENURE_BUCKET
+  - CORE_SINGLE_EXPOSURE
+  - NEW_SHORT_CONTRACT_RISK
+  - CONTRACTS_COMPLETED
+
+# Optimized weights from grid search
+weights:
+  # Base components
+  tier: 1.0
+  blueprint: 1.0
+  contract: 1.0
+  urgency: 0.2
+  financial: 0.2
+  tenure: 1.0
+  # Engineered features (tuned)
+  first_contract: 7
+  very_new: 10
+  establishing: 5
+  mature_bonus: 2
+  core_single: 10
+  new_short: 7
+  multi_renewal: 5
+
+# Optimize for accuracy while maintaining recall
+optimize_metric: "accuracy"
+min_recall: 0.70
+threshold_step: 5
+
+# Kill criteria
+min_accuracy: 0.50

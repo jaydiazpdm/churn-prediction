@@ -1,0 +1,25 @@
+# Baseline experiment - no engineered features
+# Replicates V1/V2 logic with base component scoring only
+
+name: "baseline"
+description: "Baseline model with original components only (no feature engineering)"
+
+# No engineered features
+engineered_features: []
+
+# Default weights for all components
+weights:
+  tier: 1.0
+  blueprint: 1.0
+  contract: 1.0
+  urgency: 1.0
+  financial: 1.0
+  tenure: 1.0
+
+# Threshold optimization
+optimize_metric: "f1"
+min_recall: null
+threshold_step: 5
+
+# Kill criteria
+min_accuracy: 0.50

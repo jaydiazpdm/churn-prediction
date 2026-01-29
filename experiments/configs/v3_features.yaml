@@ -1,0 +1,39 @@
+# V3 Feature Engineering experiment
+# Replicates the best-performing V3 model with engineered features
+
+name: "v3_features"
+description: "V3 model with engineered features from ACTIVE_TIME (target: 65% accuracy)"
+
+# All engineered features enabled
+engineered_features:
+  - IS_FIRST_CONTRACT
+  - TENURE_BUCKET
+  - CORE_SINGLE_EXPOSURE
+  - NEW_SHORT_CONTRACT_RISK
+  - CONTRACTS_COMPLETED
+
+# Weights tuned for V3
+weights:
+  # Base component multipliers (reduced for fixed components)
+  tier: 1.0
+  blueprint: 1.0
+  contract: 1.0
+  urgency: 0.2       # Reduced - MONTHS_UNTIL_END fixed at 3
+  financial: 0.2     # Reduced - DIFF_RETAINER fixed at 0
+  tenure: 1.0
+  # Engineered feature points
+  first_contract: 15
+  very_new: 20
+  establishing: 10
+  mature_bonus: 5
+  core_single: 20
+  new_short: 15
+  multi_renewal: 10
+
+# Threshold optimization with recall constraint
+optimize_metric: "f1"
+min_recall: 0.70
+threshold_step: 5
+
+# Kill criteria
+min_accuracy: 0.50
