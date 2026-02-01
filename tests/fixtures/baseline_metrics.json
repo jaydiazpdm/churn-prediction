@@ -1,0 +1,13 @@
+{
+  "description": "Performance baseline metrics for regression testing",
+  "baseline_config": "v3_features",
+  "date_established": "2026-02-01",
+  "metrics": {
+    "test_accuracy": 0.652,
+    "test_precision": 0.58,
+    "test_recall": 0.70,
+    "test_f1": 0.55,
+    "test_auc": 0.68
+  },
+  "notes": "Based on V3 feature engineering experiment achieving 65.2% accuracy target"
+}

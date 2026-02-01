@@ -34,6 +34,14 @@ from .components import (
     TenureScorer,
 )
 
+# Import schema validation (optional if pandera not installed)
+try:
+    from .schemas import SCORING_INPUT_SCHEMA
+    SCHEMA_VALIDATION_AVAILABLE = True
+except ImportError:
+    SCHEMA_VALIDATION_AVAILABLE = False
+    SCORING_INPUT_SCHEMA = None
+
 
 @dataclass
 class ScoringResult:
@@ -168,13 +176,23 @@ class ChurnScorer:
         Returns:
             ScoringResult with scores and component breakdown
 
+        Raises:
+            ValueError: If required columns are missing
+            pandera.errors.SchemaError: If data doesn't match schema
+
         Example:
             >>> scorer = ChurnScorer()
             >>> result = scorer.score(client_df)
             >>> high_risk = result.get_high_risk("High")
         """
         self.validate_input(df)
-        result = df.copy()
+
+        # Validate data schema and quality (if pandera is available)
+        if SCHEMA_VALIDATION_AVAILABLE:
+            validated_df = SCORING_INPUT_SCHEMA.validate(df)
+            result = validated_df.copy()
+        else:
+            result = df.copy()
 
         # Calculate all component scores (vectorized)
         component_cols = []
