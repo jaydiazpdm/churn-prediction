@@ -17,7 +17,7 @@ weights:
   tenure: 1.0
 
 # Threshold optimization
-optimize_metric: "f1"
+optimize_metric: "f2"
 min_recall: null
 threshold_step: 5
 

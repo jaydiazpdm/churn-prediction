@@ -36,12 +36,14 @@ class ExperimentResult:
         test_acc = self.metrics.get("test_accuracy", 0)
         test_rec = self.metrics.get("test_recall", 0)
         test_f1 = self.metrics.get("test_f1", 0)
+        test_f2 = self.metrics.get("test_f2", 0)
 
         return (
             f"[{self.experiment_id}] {self.config.name} - {status}\n"
             f"  Accuracy: {test_acc:.1%}\n"
             f"  Recall:   {test_rec:.1%}\n"
             f"  F1:       {test_f1:.3f}\n"
+            f"  F2:       {test_f2:.3f}\n"
             f"  Threshold: {self.threshold:.0f}"
         )
 
@@ -234,6 +236,10 @@ class ExperimentRunner:
 
         # Check minimum F1 if specified
         if config.min_f1 and metrics["test_f1"] < config.min_f1:
+            return False
+
+        # Check minimum F2 if specified
+        if config.min_f2 and metrics["test_f2"] < config.min_f2:
             return False
 
         return True

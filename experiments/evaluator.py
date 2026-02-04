@@ -13,6 +13,7 @@ from sklearn.metrics import (
     precision_score,
     recall_score,
     f1_score,
+    fbeta_score,
     roc_auc_score,
     confusion_matrix,
 )
@@ -181,6 +182,7 @@ class Evaluator:
                 "precision": precision_score(y_true, y_pred, zero_division=0),
                 "recall": recall_score(y_true, y_pred, zero_division=0),
                 "f1": f1_score(y_true, y_pred, zero_division=0),
+                "f2": fbeta_score(y_true, y_pred, beta=2, zero_division=0),
             })
 
         results_df = pd.DataFrame(results)
@@ -228,6 +230,7 @@ class Evaluator:
             "precision": precision_score(y_true, y_pred, zero_division=0),
             "recall": recall_score(y_true, y_pred, zero_division=0),
             "f1": f1_score(y_true, y_pred, zero_division=0),
+            "f2": fbeta_score(y_true, y_pred, beta=2, zero_division=0),
             "auc_roc": roc_auc_score(y_true, y_prob)
             if len(np.unique(y_true)) > 1
             else 0.0,

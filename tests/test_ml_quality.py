@@ -51,6 +51,14 @@ class TestModelPerformance:
         assert result.metrics["test_f1"] >= 0.40, \
             f"F1 too low: {result.metrics['test_f1']:.3f} < 0.40"
 
+    def test_f2_score_minimum(self, baseline_config):
+        """F2 score should favor recall while maintaining precision."""
+        runner = ExperimentRunner()
+        result = runner.run(baseline_config)
+
+        assert result.metrics["test_f2"] >= 0.50, \
+            f"F2 too low: {result.metrics['test_f2']:.3f} < 0.50"
+
     def test_no_performance_degradation(self):
         """New changes should not degrade performance by >5%."""
         # Load historical benchmark

@@ -58,7 +58,7 @@ class ExperimentConfig:
     })
 
     # Threshold optimization
-    optimize_metric: Literal["f1", "accuracy", "precision", "recall"] = "f1"
+    optimize_metric: Literal["f1", "f2", "accuracy", "precision", "recall"] = "f2"
     min_recall: Optional[float] = None
     min_precision: Optional[float] = None
     threshold_step: int = 5
@@ -66,6 +66,7 @@ class ExperimentConfig:
     # Pass/fail criteria (kill criteria from CLAUDE.md: <50% = kill)
     min_accuracy: float = 0.50
     min_f1: Optional[float] = None
+    min_f2: Optional[float] = None
 
     # Data paths (relative to experiments/)
     train_path: str = "data/train.csv"

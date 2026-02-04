@@ -31,7 +31,7 @@ weights:
   multi_renewal: 10
 
 # Threshold optimization with recall constraint
-optimize_metric: "f1"
+optimize_metric: "f2"
 min_recall: 0.70
 threshold_step: 5
 

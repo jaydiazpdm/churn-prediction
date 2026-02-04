@@ -107,11 +107,11 @@ class ArtifactManager:
         """Generate threshold sweep plot."""
         fig, ax = plt.subplots(figsize=(10, 6))
 
-        for metric in ["accuracy", "precision", "recall", "f1"]:
+        for metric in ["accuracy", "precision", "recall", "f1", "f2"]:
             ax.plot(
                 results_df["threshold"],
                 results_df[metric],
-                label=metric.capitalize(),
+                label=metric.upper() if metric in ["f1", "f2"] else metric.capitalize(),
                 linewidth=2,
             )
 

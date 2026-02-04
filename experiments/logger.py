@@ -141,7 +141,7 @@ class ExperimentLogger:
             if "results" in log:
                 entry["threshold"] = log["results"].get("threshold")
                 metrics = log["results"].get("metrics", {})
-                for key in ["accuracy", "precision", "recall", "f1"]:
+                for key in ["accuracy", "precision", "recall", "f1", "f2"]:
                     entry[key] = metrics.get(f"test_{key}")
 
             summary.append(entry)
